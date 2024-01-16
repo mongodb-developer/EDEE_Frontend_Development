@@ -19,7 +19,25 @@ async function post_AtlasSearch(req, res) {
 
   await collection.drop()
   var requestObj = JSON.parse(req.body)
-  rval.insert = await collection.insertMany(requestObj.data)
+
+  var claims = [];
+
+  // prepare data for MongoDB
+  // we use the existing claim_id as _id in our collection (is already unique, no need for an ObjectId here)
+  requestObj.data.forEach(document => {
+    claims.push({
+      _id: document.claim_id,
+      "policy_number": document.policy_number,
+      ".date_of_incident": new Date(document.date_of_incident),
+      "claim_description": document.claim_description,
+      "claim_amount": document.claim_amount,
+      "status": document.status
+    })
+  });
+
+  console.log(claims);
+
+  rval.insert = await collection.insertMany(claims)
 
   res.status(201);
   res.send(rval)
