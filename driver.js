@@ -784,7 +784,7 @@ class MongoCollection {
       this.collName,
       query
     );
-    return rval.result;
+    return rval;
   }
 }
 

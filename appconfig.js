@@ -1,2 +1,2 @@
-__hostingsite = "andrewslaptop"
-__atlasappid = "edee_production-szmvu"
+__hostingsite = "gcr_edee_dev"
+__atlasappid = "gcr_edee_dev-rhnsbxk"
