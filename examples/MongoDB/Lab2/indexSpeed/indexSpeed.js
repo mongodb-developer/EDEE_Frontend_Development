@@ -12,14 +12,14 @@ async function get_IndexDemo(req, res) {
     var projection = { _id: 1 };
     var rval = msg;
 
-    result = await collection.countDocuments(query);
+    result = await collection.countDocuments(query, true);
 
     rval += "Query " + JSON.stringify(query) + " with index took approx " +
         result.ms + " ms to find " + result.message + " records\n";
 
     query = { bedrooms: 8 };
 
-    result = await collection.countDocuments(query);
+    result = await collection.countDocuments(query, true);
 
     rval += "Query " + JSON.stringify(query) + " with NO index took approx " +
         result.ms + " ms to find " + result.message + " records\n";
